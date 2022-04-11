@@ -1,0 +1,43 @@
+.floating-block {
+    position: fixed;
+    bottom: 50%;
+    right: 0;
+    display: flex;
+    z-index: 10;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
+    .floating-block-unvisible {
+        display: flex;
+        align-items: flex-end;
+
+        button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 10%;
+            margin: 3px;
+            color: #fff;
+            background: #27AE60;
+        }
+
+        a {
+            button {
+                background: #25d366;
+            }
+
+            &:first-child {
+                button {
+                    background: #0088cc;
+                }
+            }
+        }
+    }
+
+    .floating-block-visible {
+        display: flex;
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,19 @@
+.slider {
+    width: 1168px;
+    margin: 0 auto;
+
+    .slider-images {
+        display: flex;
+        width: 100%;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .slider-switchers {
+        display: flex;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,296 @@
+.navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 150px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+}
+
+.navbar .navbar-up {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 65px;
+  font-size: 17px;
+}
+
+.navbar .navbar-up ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.navbar .navbar-up ul li {
+  list-style: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.navbar .navbar-down {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 200px 1fr 120px 120px;
+      grid-template-columns: 200px 1fr 120px 120px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 85px;
+  font-size: 16px;
+}
+
+.navbar .navbar-down .navbar-logo img {
+  width: 162px;
+  height: 70px;
+}
+
+.navbar .navbar-down .navbar-search {
+  position: relative;
+  width: 80%;
+}
+
+.navbar .navbar-down .navbar-search input {
+  width: 100%;
+  height: 44px;
+  padding: 5px;
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  outline: none;
+}
+
+.navbar .navbar-down .navbar-search button {
+  position: absolute;
+  top: 2px;
+  right: 0;
+}
+
+.navbar .navbar-down .navbar-search .navbar-search-results {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  overflow: scroll;
+  z-index: 20;
+  width: 100%;
+  max-height: 250px;
+  background: #fff;
+}
+
+.navbar .navbar-down .navbar-search .navbar-search-results div {
+  width: 100%;
+  height: 50px;
+  padding: 15px 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.navbar .navbar-down .navbar-favor {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.navbar .navbar-down .navbar-favor a {
+  margin-left: 10px;
+}
+
+.navbar .navbar-down .navbar-cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.navbar .navbar-down .navbar-cart a {
+  margin-left: 10px;
+}
+
+.navbar-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-mobile {
+    display: block;
+    padding: 10px 0;
+  }
+}
+
+.navbar-mobile .navbar-mobile-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.navbar-mobile .navbar-mobile-header .navbar-mobile-logo {
+  width: 99px;
+  height: 43px;
+}
+
+.navbar-mobile .navbar-mobile-header .navbar-mobile-logo img {
+  width: 100%;
+}
+
+.navbar-mobile .navbar-mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  width: 80%;
+  height: 100%;
+  background: #fff;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-header {
+  position: relative;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-header h1 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 15px;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-header button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 15px;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-body a {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-body .menu-body-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 120px;
+  border-top: 1px solid #d3d3d3;
+  padding-top: 10px;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-body .menu-body-icons div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-body .menu-body-icons div a {
+  margin-left: 5px;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-footer {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-footer p {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.navbar-mobile .navbar-mobile-menu .menu-container .menu-footer span {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.navbar-mobile .mobile-search {
+  position: fixed;
+  top: 63px;
+  left: 0;
+  z-index: 15;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.navbar-mobile .mobile-search input {
+  position: relative;
+  width: 90%;
+  height: 44px;
+  margin-top: 10px;
+  padding: 5px;
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  outline: none;
+}
+
+.navbar-mobile .mobile-search button {
+  position: absolute;
+  top: 12px;
+  right: 5%;
+}
+
+.navbar-mobile .mobile-search .mobile-search-results {
+  width: 90%;
+  height: 250px;
+  margin: 0 auto;
+  background: #fff;
+  text-align: left;
+  overflow: scroll;
+}
+
+.navbar-mobile .mobile-search .mobile-search-results div {
+  width: 100%;
+  height: 50px;
+  padding: 15px 5px;
+}
+/*# sourceMappingURL=Header.css.map */

@@ -1,0 +1,231 @@
+.cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 0 40px 0;
+}
+
+@media (max-width: 768px) {
+  .cart {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.cart .cart-products {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 60%;
+}
+
+@media (max-width: 768px) {
+  .cart .cart-products {
+    width: 100%;
+  }
+}
+
+.cart .cart-products .cart-product {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 170px;
+  padding: 12px;
+  margin: 5px 0;
+  background-color: #fff;
+}
+
+.cart .cart-products .cart-product .cart-product-remove {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.cart .cart-products .cart-product .cart-product-picture {
+  width: 95px;
+  height: 146px;
+}
+
+.cart .cart-products .cart-product .cart-product-details {
+  margin-left: 16px;
+}
+
+.cart .cart-products .cart-product .cart-product-details h1 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.cart .cart-products .cart-product .cart-product-details p {
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.cart .cart-products .cart-product .cart-product-details p button {
+  margin-left: 5px;
+  width: 8px;
+  height: 8px;
+  border: none;
+  border-radius: 50%;
+}
+
+.cart .cart-products .cart-product .cart-product-details h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.cart .cart-products .cart-product .cart-product-details h2 span {
+  font-size: 14px;
+  font-weight: 400;
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+}
+
+.cart .cart-products .cart-product .cart-product-details .product-count {
+  margin-top: 8px;
+}
+
+.cart .cart-products .cart-product .cart-product-details .product-count button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 15%;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cart .cart-products .cart-product .cart-product-details .product-count input {
+  width: 50px;
+  height: 32px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cart .cart-total {
+  width: 368px;
+  height: 280px;
+  margin: 5px 0 0 25px;
+  padding: 25px;
+  background: #fff;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .cart .cart-total {
+    display: none;
+  }
+}
+
+.cart .cart-total h3 {
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.cart .cart-total div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 10px 0;
+  font-weight: 400;
+  color: #979797;
+}
+
+.cart .cart-total div p {
+  color: #000;
+}
+
+.cart .cart-total .total-price {
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: 1px dashed #979797;
+}
+
+.cart .cart-total button {
+  width: 100%;
+  height: 44px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  background: #E5271B;
+}
+
+.cart .cart-total-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+}
+
+@media (min-width: 769px) {
+  .cart .cart-total-mobile {
+    display: none;
+  }
+}
+
+.cart .cart-total-mobile h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.cart .cart-total-mobile div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #979797;
+}
+
+.cart .cart-total-mobile div p {
+  color: #393939;
+}
+
+.cart .cart-total-mobile .total-price {
+  padding-top: 10px;
+  border-top: 1px dashed #979797;
+}
+
+.cart .cart-total-mobile button {
+  width: 100%;
+  height: 44px;
+  margin-top: 10px;
+  border: 1px solid #d1d1d1;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1d1d1b;
+}
+
+.cart .cart-total-mobile button:last-child {
+  background: #E5271B;
+  color: #fff;
+  border: none;
+}
+/*# sourceMappingURL=Cart.css.map */

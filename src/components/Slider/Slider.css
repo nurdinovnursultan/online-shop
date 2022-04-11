@@ -1,0 +1,26 @@
+.slider {
+  width: 1168px;
+  margin: 0 auto;
+}
+
+.slider .slider-images {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider .slider-images img {
+  width: 100%;
+}
+
+.slider .slider-switchers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=Slider.css.map */

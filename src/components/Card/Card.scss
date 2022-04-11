@@ -1,0 +1,76 @@
+.card {
+    width: 286px;
+    height: 540px;
+    margin: 10px 3px;
+    background: #fff;
+
+    &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    }
+
+    .card-photo {
+        position: relative;
+
+        .card-sale {
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            .card-sale-number {
+                position: relative;
+
+                div {
+                    position: absolute;
+                    top: 7px;
+                    left: 3px;
+                    transform: rotate(-45deg);
+                    color: #fff;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .card-favorite {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    .card-info {
+        padding: 5px;
+
+        h2 {
+            font-size: 16px;
+            font-weight: 500;
+            margin: 5px 0;
+
+            span {
+                font-size: 14px;
+                font-weight: 300;
+                text-decoration-line: line-through;
+            }
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 13px;
+        }
+
+        .color-buttons {
+            margin-top: 5px;
+
+            button {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                border: none;
+                margin: 0 3px;
+            }
+        }
+    }
+}

@@ -1,0 +1,80 @@
+.card {
+  width: 286px;
+  height: 540px;
+  margin: 10px 3px;
+  background: #fff;
+}
+
+.card:hover {
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card .card-photo {
+  position: relative;
+}
+
+.card .card-photo .card-sale {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card .card-photo .card-sale .card-sale-number {
+  position: relative;
+}
+
+.card .card-photo .card-sale .card-sale-number div {
+  position: absolute;
+  top: 7px;
+  left: 3px;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  color: #fff;
+  font-size: 12px;
+}
+
+.card .card-photo .card-favorite {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card .card-info {
+  padding: 5px;
+}
+
+.card .card-info h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+.card .card-info h2 span {
+  font-size: 14px;
+  font-weight: 300;
+  -webkit-text-decoration-line: line-through;
+          text-decoration-line: line-through;
+}
+
+.card .card-info h3 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card .card-info p {
+  font-size: 13px;
+}
+
+.card .card-info .color-buttons {
+  margin-top: 5px;
+}
+
+.card .card-info .color-buttons button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  margin: 0 3px;
+}
+/*# sourceMappingURL=Card.css.map */

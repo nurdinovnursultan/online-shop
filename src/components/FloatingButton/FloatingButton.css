@@ -1,0 +1,53 @@
+.floating-block {
+  position: fixed;
+  bottom: 50%;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .floating-block {
+    display: none;
+  }
+}
+
+.floating-block .floating-block-unvisible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.floating-block .floating-block-unvisible button {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 10%;
+  margin: 3px;
+  color: #fff;
+  background: #27AE60;
+}
+
+.floating-block .floating-block-unvisible a button {
+  background: #25d366;
+}
+
+.floating-block .floating-block-unvisible a:first-child button {
+  background: #0088cc;
+}
+
+.floating-block .floating-block-visible {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+/*# sourceMappingURL=FloatingButton.css.map */
