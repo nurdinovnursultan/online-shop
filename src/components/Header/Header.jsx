@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -10,6 +10,12 @@ import FloatingButton from '../FloatingButton/FloatingButton';
 import { useSelector } from 'react-redux';
 
 const Header = ({ description, cart, favorites, handleChange, searchValue }) => {
+    const location = useLocation()
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname])
+
     const navigate = useNavigate()
     const searchProducts = useSelector(state => {
         const { productsReducer } = state

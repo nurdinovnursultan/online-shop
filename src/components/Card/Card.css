@@ -12,6 +12,8 @@
 
 .card .card-photo {
   position: relative;
+  width: 286px;
+  height: 437px;
 }
 
 .card .card-photo .card-sale {

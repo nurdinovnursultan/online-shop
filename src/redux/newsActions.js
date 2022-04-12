@@ -4,7 +4,7 @@ import { GET_COMPANY_INFORMATION, GET_NEWS } from "./types";
 
 export function getNews() {
     return async (dispatch) => {
-        const { data } = await axios(`${newsAPI}?p=1&l=8`)
+        const { data } = await axios(newsAPI)
         dispatch({
             type: GET_NEWS,
             payload: data

@@ -46,7 +46,7 @@ export const changeCountProduct = (count, id) => {
     cart.products = cart.products.map(item => {
         if (item.product.id === id) {
             item.count = count
-            item.subPrice = sumPricePerCount(item)
+            item.pricePerCount = sumPricePerCount(item)
         }
         return item
     })
