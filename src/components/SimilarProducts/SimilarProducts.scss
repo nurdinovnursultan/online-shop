@@ -1,0 +1,19 @@
+.cards-similar {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+
+    @media (max-width: 1200px) {
+        flex-wrap: nowrap;
+        overflow-y: scroll;
+    }
+
+    .card {
+        width: 226px;
+        height: 450px;
+
+        .card-photo {
+            width: 226px;
+        }
+    }
+}

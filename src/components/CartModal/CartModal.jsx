@@ -1,7 +1,8 @@
-import { Button, Checkbox, createTheme, FormControl, FormControlLabel, FormHelperText, IconButton, OutlinedInput, ThemeProvider } from '@mui/material';
+import { Checkbox, createTheme, IconButton, ThemeProvider } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { addOrder } from '../../utils';
 
 const theme = createTheme({
     palette: {
@@ -12,6 +13,41 @@ const theme = createTheme({
 })
 
 const CartModal = ({ setCartModal }) => {
+    const [code, setCode] = useState(0)
+    const flags = [
+        "https://img.icons8.com/color/2x/kyrgyzstan.png",
+        "https://img.icons8.com/color/2x/russian-federation.png",
+        "https://img.icons8.com/color/2x/uzbekistan.png",
+        "https://img.icons8.com/color/2x/ukraine.png"
+    ]
+
+    const [order, setOrder] = useState({})
+    const [checkbox, setCheckbox] = useState(false)
+    const [button, setButton] = useState(false)
+
+    const createOrder = (e) => {
+        let newOrder = {
+            ...order,
+            [e.target.name]: e.target.value
+        }
+        setOrder(newOrder)
+    }
+
+    useEffect(() => {
+        if (order.name && order.surname && order.mail && order.phoneNumber && order.country && order.city && checkbox) {
+            setButton(true)
+        }
+    }, [createOrder])
+
+    const newOrder = () => {
+        if (!order.name || !order.surname || !order.mail || !order.phoneNumber || !order.country || !order.city || !checkbox) {
+            alert('Заполните все поля!')
+            return
+        }
+        addOrder(order)
+        setOrder({})
+    }
+
     return (
         <div className="cart-modal">
             <div className="cart-modal-container">
@@ -22,79 +58,55 @@ const CartModal = ({ setCartModal }) => {
                     </IconButton>
                 </div>
                 <div className="cart-modal-body">
-                    <FormControl variant="outlined">
-                        <FormHelperText id="outlined-weight-helper-text">Ваше имя</FormHelperText>
-                        <OutlinedInput
-                            id="outlined-adornment-weight"
-                            aria-describedby="outlined-weight-helper-text"
-                            inputProps={{
-                                'aria-label': 'weight',
-                            }}
-                            placeholder="Например Иван"
-                        />
-                    </FormControl>
-                    <FormControl variant="outlined">
-                        <FormHelperText id="outlined-weight-helper-text">Ваша фамилия</FormHelperText>
-                        <OutlinedInput
-                            id="outlined-adornment-weight"
-                            aria-describedby="outlined-weight-helper-text"
-                            inputProps={{
-                                'aria-label': 'weight',
-                            }}
-                            placeholder="Например Иванов"
-                        />
-                    </FormControl>
-                    <FormControl variant="outlined">
-                        <FormHelperText id="outlined-weight-helper-text">Электронная почта</FormHelperText>
-                        <OutlinedInput
-                            id="outlined-adornment-weight"
-                            aria-describedby="outlined-weight-helper-text"
-                            inputProps={{
-                                'aria-label': 'weight',
-                            }}
-                            placeholder="example@mail.com"
-                        />
-                    </FormControl>
-                    <FormControl variant="outlined">
-                        <FormHelperText id="outlined-weight-helper-text">Ваш номер телефона</FormHelperText>
-                        <OutlinedInput
-                            id="outlined-adornment-weight"
-                            aria-describedby="outlined-weight-helper-text"
-                            inputProps={{
-                                'aria-label': 'weight',
-                            }}
-                            placeholder="Введите номер телефона"
-                        />
-                    </FormControl>
-                    <FormControl variant="outlined">
-                        <FormHelperText id="outlined-weight-helper-text">Страна</FormHelperText>
-                        <OutlinedInput
-                            id="outlined-adornment-weight"
-                            aria-describedby="outlined-weight-helper-text"
-                            inputProps={{
-                                'aria-label': 'weight',
-                            }}
-                            placeholder="Введите страну"
-                        />
-                    </FormControl>
-                    <FormControl variant="outlined">
-                        <FormHelperText id="outlined-weight-helper-text">Город</FormHelperText>
-                        <OutlinedInput
-                            id="outlined-adornment-weight"
-                            aria-describedby="outlined-weight-helper-text"
-                            inputProps={{
-                                'aria-label': 'weight',
-                            }}
-                            placeholder="Введите город"
-                        />
-                    </FormControl>
+                    <div>
+                        <p>Ваше имя</p>
+                        <input name="name" onChange={createOrder} placeholder="Напимер Иван" />
+                    </div>
+                    <div>
+                        <p>Ваша фамилия</p>
+                        <input name="surname" onChange={createOrder} placeholder="Напимер Иванов" />
+                    </div>
+                    <div>
+                        <p>Электронная почта</p>
+                        <input name="mail" onChange={createOrder} placeholder="example@mail.com" />
+                    </div>
+                    <div className="phone-input">
+                        <p>Ваш номер телефона</p>
+                        <input name="phoneNumber" onChange={createOrder} placeholder="Введите номер телефона" />
+                        <div className="select-number">
+                            <div className="select-image">
+                                <img src={flags[code]} alt="" />
+                            </div>
+                            <select name="phoneCode" onChange={(e) => {
+                                setCode(e.target.value)
+                                createOrder()
+                            }}>
+                                <option value={0}>+996</option>
+                                <option value={1}>+7</option>
+                                <option value={2}>+998</option>
+                                <option value={3}>+380</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <p>Страна</p>
+                        <input name="country" onChange={createOrder} placeholder="Введите страну" />
+                    </div>
+                    <div>
+                        <p>Город</p>
+                        <input name="city" onChange={createOrder} placeholder="Введите город" />
+                    </div>
                 </div>
                 <div className="cart-modal-checkbox">
-                    <ThemeProvider theme={theme}>
-                        <FormControlLabel control={<Checkbox color="primary" />} label="Согласен с условиями" />
-                        <Link to="/offer">публичной оферты</Link>
-                        <Button variant="contained" color="primary" >Заказать</Button>
-                    </ThemeProvider>
+                    <div className="checkbox">
+                        <ThemeProvider theme={theme}>
+                            <Checkbox color="primary" checked={checkbox} onClick={() => setCheckbox(true)} />
+                        </ThemeProvider>
+                        <span>Согласен с условиями <Link to="/offer">публичной оферты</Link></span>
+                    </div>
+                    <div className="checkbox-button">
+                        <button className={button ? 'active' : 'disabled'} onClick={() => newOrder()}>Заказать</button>
+                    </div>
                 </div>
             </div>
         </div>

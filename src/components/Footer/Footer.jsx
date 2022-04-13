@@ -33,15 +33,15 @@ const Footer = ({ description }) => {
                         <h4>Контакты</h4>
                         <div>
                             <CallIcon />
-                            <p>{description.phone2}</p>
+                            <a href={`tel:+{description.phone2}`}>{description.phone2}</a>
                         </div>
                         <div>
                             <CallIcon />
-                            <p>{description.phone2}</p>
+                            <a href={`tel:+{description.phone2}`}>{description.phone2}</a>
                         </div>
                         <div>
                             <MailOutlineIcon />
-                            <p>{description.mail}</p>
+                            <a href={`mailto:{description.mail}`}>{description.mail}</a>
                         </div>
                     </div>
                     <div className="footer-social">

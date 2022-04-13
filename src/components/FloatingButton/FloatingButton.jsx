@@ -1,20 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import MessageIcon from '@mui/icons-material/Message';
 import CloseIcon from '@mui/icons-material/Close';
 import CallIcon from '@mui/icons-material/Call';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import { IconButton } from '@mui/material';
+import { createTheme, IconButton, ThemeProvider } from '@mui/material';
 import Modal from '../Modal/Modal';
 
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#1d1d1b"
+        },
+        secondary: {
+            main: "#fff"
+        }
+    }
+})
+
 const FloatingButton = ({ links }) => {
+    const [state, setState] = useState(true)
+    const [modal, setModal] = useState(false)
+
     const goUp = () => {
         window.scrollTo(0, 0);
     }
 
-    const [state, setState] = useState(true)
-    const [modal, setModal] = useState(false)
+    const [changeColor, setChangeColor] = useState(false)
+
+    useEffect(() => {
+        document.addEventListener('scroll', scrollHandler)
+        return function () {
+            document.removeEventListener('scroll', scrollHandler)
+        }
+    }, [])
+
+    const scrollHandler = (e) => {
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 260) {
+            setChangeColor(true)
+        } else {
+            setChangeColor(false)
+        }
+    }
     return (
         <>
             {
@@ -41,12 +69,18 @@ const FloatingButton = ({ links }) => {
                     )
                 }
                 <div className="floating-block-visible">
-                    <IconButton onClick={() => goUp()}>
-                        <KeyboardArrowUpIcon fontSize="large" />
-                    </IconButton>
-                    <IconButton onClick={() => setState(!state)}>
-                        {state ? <MessageIcon fontSize="large" /> : <CloseIcon fontSize="large" />}
-                    </IconButton>
+                    <ThemeProvider theme={theme}>
+                        <IconButton onClick={() => goUp()}>
+                            <KeyboardArrowUpIcon fontSize="large" color={changeColor ? "secondary" : "primary"} />
+                        </IconButton>
+                        <IconButton onClick={() => setState(!state)}>
+                            {state ? (
+                                <MessageIcon fontSize="large" color={changeColor ? "secondary" : "primary"} />
+                            ) : (
+                                <CloseIcon fontSize="large" color={changeColor ? "secondary" : "primary"} />
+                            )}
+                        </IconButton>
+                    </ThemeProvider>
                 </div>
             </div>
         </>

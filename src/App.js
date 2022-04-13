@@ -17,6 +17,7 @@ import PublicOfferPage from './pages/PublicOfferPage';
 import SearchPage from './pages/SearchPage';
 import Slider from './components/Slider/Slider';
 import { getCart, getFavorites, searchProducts } from './redux/productsActions';
+import FloatingButton from './components/FloatingButton/FloatingButton';
 
 function App() {
   const dispatch = useDispatch()
@@ -60,6 +61,7 @@ function App() {
             favorites={favorites}
             handleChange={handleChange}
             searchValue={searchValue} />
+          <FloatingButton links={item.info} />
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="about" element={<AboutUsPage about={item.about} />} />

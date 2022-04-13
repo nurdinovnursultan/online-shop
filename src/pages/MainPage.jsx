@@ -33,8 +33,7 @@ const MainPage = () => {
     const collectionsArray = collections.slice(0, collectionsLimit)
 
     const setLimit = () => {
-        let newLimit = collectionsLimit * 2
-        setCollectionsLimit(newLimit)
+        setCollectionsLimit(prevState => prevState + prevState)
     }
     return (
         <div>

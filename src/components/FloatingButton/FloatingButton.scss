@@ -1,12 +1,12 @@
 .floating-block {
     position: fixed;
-    bottom: 50%;
-    right: 0;
+    bottom: 5%;
+    right: 5%;
     display: flex;
     z-index: 10;
 
-    @media (max-width: 768px) {
-        display: none;
+    @media (max-width: 1024px) {
+        bottom: 15%;
     }
 
     .floating-block-unvisible {
@@ -39,5 +39,6 @@
     .floating-block-visible {
         display: flex;
         flex-direction: column;
+        color: #1d1d1b;
     }
 }

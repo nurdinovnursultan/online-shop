@@ -1,16 +1,16 @@
 .floating-block {
   position: fixed;
-  bottom: 50%;
-  right: 0;
+  bottom: 5%;
+  right: 5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   z-index: 10;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .floating-block {
-    display: none;
+    bottom: 15%;
   }
 }
 
@@ -49,5 +49,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  color: #1d1d1b;
 }
 /*# sourceMappingURL=FloatingButton.css.map */

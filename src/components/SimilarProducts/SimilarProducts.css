@@ -1,0 +1,27 @@
+.cards-similar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 10px 0;
+}
+
+@media (max-width: 1200px) {
+  .cards-similar {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    overflow-y: scroll;
+  }
+}
+
+.cards-similar .card {
+  width: 226px;
+  height: 450px;
+}
+
+.cards-similar .card .card-photo {
+  width: 226px;
+}
+/*# sourceMappingURL=SimilarProducts.css.map */

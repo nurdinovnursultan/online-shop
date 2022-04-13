@@ -17,11 +17,24 @@
           align-items: center;
 }
 
+.cart-modal select {
+  border: 1px solid #bebebe;
+  outline: none;
+}
+
 .cart-modal .cart-modal-container {
   width: 440px;
-  height: 672px;
+  height: 620px;
   background: #fff;
   padding: 30px 25px;
+}
+
+@media (max-width: 500px) {
+  .cart-modal .cart-modal-container {
+    max-width: 90%;
+    height: 580px;
+    padding: 10px;
+  }
 }
 
 .cart-modal .cart-modal-container .cart-modal-header {
@@ -41,6 +54,12 @@
   font-weight: 600;
 }
 
+@media (max-width: 500px) {
+  .cart-modal .cart-modal-container .cart-modal-header h1 {
+    font-size: 16px;
+  }
+}
+
 .cart-modal .cart-modal-container .cart-modal-body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -51,12 +70,96 @@
           flex-direction: column;
 }
 
-.cart-modal .cart-modal-container .cart-modal-checkbox button {
+.cart-modal .cart-modal-container .cart-modal-body div {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.cart-modal .cart-modal-container .cart-modal-body div input {
+  width: 100%;
+  height: 44px;
+  padding: 5px;
+  border: 1px solid #bebebe;
+  outline: none;
+  font-size: 14px;
+}
+
+.cart-modal .cart-modal-container .cart-modal-body div p {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cart-modal .cart-modal-container .cart-modal-body .phone-input {
+  position: relative;
+}
+
+.cart-modal .cart-modal-container .cart-modal-body .phone-input input {
+  padding-left: 85px;
+}
+
+.cart-modal .cart-modal-container .cart-modal-body .phone-input .select-number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  width: 80px;
+}
+
+.cart-modal .cart-modal-container .cart-modal-body .phone-input .select-number .select-image {
+  width: 25px;
+}
+
+.cart-modal .cart-modal-container .cart-modal-checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.cart-modal .cart-modal-container .cart-modal-checkbox .checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 5px 0;
+}
+
+.cart-modal .cart-modal-container .cart-modal-checkbox .checkbox span {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.cart-modal .cart-modal-container .cart-modal-checkbox .checkbox span a {
+  font-family: 'Inter', sans-serif;
+  color: #3a3aff;
+}
+
+.cart-modal .cart-modal-container .cart-modal-checkbox .checkbox-button button {
   width: 100%;
   height: 44px;
   border: none;
   font-size: 14px;
   font-weight: 500;
   color: #fff;
+}
+
+.cart-modal .cart-modal-container .cart-modal-checkbox .checkbox-button .active {
+  background: #1d1d1b;
+}
+
+.cart-modal .cart-modal-container .cart-modal-checkbox .checkbox-button .disabled {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0.4)), to(rgba(255, 255, 255, 0.4))), #1D1D1B;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), #1D1D1B;
 }
 /*# sourceMappingURL=CartModal.css.map */

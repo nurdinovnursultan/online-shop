@@ -11,12 +11,13 @@
     .card-photo {
         position: relative;
         width: 286px;
-        height: 437px;
 
         .card-sale {
             position: absolute;
             top: 0;
             left: 0;
+            width: 18%;
+            height: 12%;
 
             .card-sale-number {
                 position: relative;
@@ -32,7 +33,7 @@
             }
         }
 
-        .card-favorite {
+        button {
             position: absolute;
             top: 0;
             right: 0;
@@ -40,6 +41,8 @@
     }
 
     .card-info {
+        width: 100%;
+        height: 99px;
         padding: 5px;
 
         h2 {

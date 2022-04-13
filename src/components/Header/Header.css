@@ -281,7 +281,7 @@
 
 .navbar-mobile .mobile-search .mobile-search-results {
   width: 90%;
-  height: 250px;
+  max-height: 250px;
   margin: 0 auto;
   background: #fff;
   text-align: left;

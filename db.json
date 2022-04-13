@@ -1,0 +1,25 @@
+{
+  "orders": [
+    {
+      "name": "John",
+      "surname": "Snow",
+      "mail": "winter@gmail.com",
+      "phoneNumber": "702422178",
+      "country": "Kyrgyzstan",
+      "city": "Bishkek",
+      "id": 1
+    }
+  ],
+  "feedback": [
+    {
+      "name": "Nursultan",
+      "phone": "+996 (705) 060 460",
+      "id": 1
+    },
+    {
+      "name": "John",
+      "phone": "624 472 4951",
+      "id": 2
+    }
+  ]
+}

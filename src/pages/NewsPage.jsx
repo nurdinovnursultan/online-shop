@@ -31,7 +31,6 @@ const NewsPage = () => {
     const scrollHandler = (e) => {
         if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 150) {
             setFetch(true)
-            console.log(fetch);
         }
     }
 

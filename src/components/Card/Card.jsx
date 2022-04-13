@@ -31,16 +31,14 @@ const Card = ({ product }) => {
                         </div>
                     ) : null
                 }
-                <div className="card-favorite">
-                    <IconButton onClick={() => {
-                        addAndDeleteProductInFavorites(product)
-                        dispatch(getFavorites())
-                    }}>
-                        {
-                            checkInFavorites ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />
-                        }
-                    </IconButton>
-                </div>
+                <IconButton onClick={() => {
+                    addAndDeleteProductInFavorites(product)
+                    dispatch(getFavorites())
+                }}>
+                    {
+                        checkInFavorites ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />
+                    }
+                </IconButton>
                 <img src={photo} alt="" />
             </div>
             <Link to={`/details/${product.id}`}>

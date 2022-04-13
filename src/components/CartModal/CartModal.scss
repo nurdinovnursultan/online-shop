@@ -10,11 +10,22 @@
     justify-content: center;
     align-items: center;
 
+    select {
+        border: 1px solid #bebebe;
+        outline: none;
+    }
+
     .cart-modal-container {
         width: 440px;
-        height: 672px;
+        height: 620px;
         background: #fff;
         padding: 30px 25px;
+
+        @media (max-width: 500px) {
+            max-width: 90%;
+            height: 580px;
+            padding: 10px;
+        }
 
         .cart-modal-header {
             display: flex;
@@ -24,24 +35,101 @@
             h1 {
                 font-size: 20px;
                 font-weight: 600;
+
+                @media (max-width: 500px) {
+                    font-size: 16px;
+                }
             }
         }
 
         .cart-modal-body {
             display: flex;
             flex-direction: column;
+
+            div {
+                width: 100%;
+                margin: 5px 0;
+
+                input {
+                    width: 100%;
+                    height: 44px;
+                    padding: 5px;
+                    border: 1px solid #bebebe;
+                    outline: none;
+                    font-size: 14px;
+                }
+
+                p {
+                    font-size: 13px;
+                    font-weight: 500;
+                }
+
+            }
+
+            .phone-input {
+                position: relative;
+
+                input {
+                    padding-left: 85px;
+                }
+
+                .select-number {
+                    display: flex;
+                    align-items: center;
+                    position: absolute;
+                    top: 15px;
+                    left: 5px;
+                    width: 80px;
+
+                    .select-image {
+                        width: 25px;
+                    }
+                }
+
+            }
         }
 
         .cart-modal-checkbox {
+            display: flex;
+            flex-direction: column;
 
-            button {
-                width: 100%;
-                height: 44px;
-                border: none;
-                font-size: 14px;
-                font-weight: 500;
-                color: #fff;
+            .checkbox {
+                display: flex;
+                align-items: center;
+                margin: 5px 0;
+
+                span {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 15px;
+                    font-weight: 500;
+
+                    a {
+                        font-family: 'Inter', sans-serif;
+                        color: rgb(58, 58, 255);
+                    }
+                }
             }
+
+            .checkbox-button {
+                button {
+                    width: 100%;
+                    height: 44px;
+                    border: none;
+                    font-size: 14px;
+                    font-weight: 500;
+                    color: #fff;
+                }
+
+                .active {
+                    background: #1d1d1b;
+                }
+
+                .disabled {
+                    background: linear-gradient(0deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), #1D1D1B;
+                }
+            }
+
         }
+
     }
 }

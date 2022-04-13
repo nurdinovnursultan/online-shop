@@ -1,37 +1,68 @@
 .product-details {
     display: grid;
-    grid-template-columns: 55% 45%;
+    grid-template-columns: 57% 43%;
     padding-top: 25px;
 
-    .product-details-pictures {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 80% 20%;
+    @media (max-width: 1000px) {
+        grid-template-columns: 50% 50%;
+    }
 
-        .first {
-            img {
-                width: 300px;
-                height: 480px;
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-details-pictures {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+
+        @media (max-width: 768px) {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-y: scroll;
+
+            div {
+                width: 100%;
+
+                img {
+                    width: 262px;
+                }
             }
         }
 
-        .second {
-            img {
-                width: 150px;
-                height: 240px;
-            }
+        div {
+            margin: 2px;
         }
     }
 
     .product-details-description {
-        width: 520px;
-        height: 434px;
+        position: sticky;
+        top: 20px;
+        width: 100%;
+        height: 450px;
         padding: 20px;
         background: #fff;
+
+        @media (max-width: 1000px) {
+            padding: 15px;
+        }
+
+        @media (max-width: 768px) {
+            padding: 10px;
+        }
+
+        @media (max-width: 405px) {
+            height: 480px;
+        }
 
         h1 {
             font-size: 24px;
             font-weight: 500;
+
+            @media (max-width: 405px) {
+                font-size: 18px;
+            }
         }
 
         h2 {
@@ -56,6 +87,10 @@
             font-size: 14px;
             font-weight: 500;
             margin: 15px 0;
+
+            @media (max-width: 768px) {
+                margin: 10px 0;
+            }
 
             button {
                 margin: 0 2px;
@@ -82,6 +117,10 @@
         .product-description {
             margin: 20px 0;
 
+            @media (max-width: 1000px) {
+                margin: 10px 0;
+            }
+
             p {
                 font-size: 16px;
                 font-weight: 500;
@@ -91,13 +130,22 @@
         .product-info {
             display: flex;
 
+            @media (max-width: 768px) {
+                flex-direction: column;
+            }
+
             div {
                 width: 50%;
+
+                @media (max-width: 768px) {
+                    width: 100%;
+                }
             }
         }
 
         .product-buttons {
             display: flex;
+            justify-content: space-between;
 
             button {
                 border: none;
@@ -111,7 +159,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 428px;
+                width: 95%;
                 height: 44px;
                 margin-right: 8px;
             }

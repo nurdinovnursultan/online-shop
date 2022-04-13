@@ -6,7 +6,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Badge, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import FloatingButton from '../FloatingButton/FloatingButton';
 import { useSelector } from 'react-redux';
 
 const Header = ({ description, cart, favorites, handleChange, searchValue }) => {
@@ -14,6 +13,7 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        setOpenMenu(false)
     }, [location.pathname])
 
     const navigate = useNavigate()
@@ -43,7 +43,9 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                                 </li>
                             </ul>
                         </div>
-                        <div>Тел: {description.phone1}</div>
+                        <div>Тел:
+                            <a href={`tel:+${description.phone1}`}>{description.phone1}</a>
+                        </div>
                     </div>
                     <div className="navbar-down">
                         <div className="navbar-logo">
@@ -82,7 +84,6 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                             <Link to="/cart">Корзина</Link>
                         </div>
                     </div>
-                    <FloatingButton links={description} />
                 </div>
             </div>
             <div className="navbar-mobile">

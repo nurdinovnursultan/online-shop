@@ -4,11 +4,6 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import photo from '../../images/photo.png';
-import photo1 from '../../images/photo1.png';
-import photo2 from '../../images/photo2.png';
-import photo3 from '../../images/photo3.png';
-import photo4 from '../../images/photo4.png';
 import { addAndDeleteProductInCart, addAndDeleteProductInFavorites } from '../../utils';
 import { getCart, getFavorites } from '../../redux/productsActions';
 
@@ -36,18 +31,13 @@ const ProductDetails = ({ product }) => {
     return (
         <div className="product-details">
             <div className="product-details-pictures">
-                <div className="first">
-                    <img src={photo} alt="" />
-                    <img src={photo1} alt="" />
-                    <img src={photo2} alt="" />
-                    <img src={photo} alt="" />
-                </div>
-                <div className="second">
-                    <img src={photo3} alt="" />
-                    <img src={photo} alt="" />
-                    <img src={photo4} alt="" />
-                    <img src={photo} alt="" />
-                </div>
+                {
+                    product.images ? product.images.map((item, index) => (
+                        <div key={index}>
+                            <img src={item} alt="" />
+                        </div>
+                    )) : null
+                }
             </div>
             <div className="product-details-description">
                 <h1>{product.title}</h1>

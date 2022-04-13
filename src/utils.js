@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export const addAndDeleteProductInCart = (product, color) => {
     let cart = JSON.parse(localStorage.getItem('cart'))
     let newProduct = {
@@ -65,4 +67,12 @@ export const addAndDeleteProductInFavorites = (product) => {
         favorites.products.push(favoriteProduct)
     }
     localStorage.setItem('favorites', JSON.stringify(favorites))
+}
+
+export const addFeedback = async (user) => {
+    await axios.post("http://localhost:8000/feedback", user)
+}
+
+export const addOrder = async (order) => {
+    await axios.post("http://localhost:8000/orders", order)
 }
