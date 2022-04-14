@@ -2,10 +2,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin: 10px 0;
+  margin: 10px 3px;
 }
 
 @media (max-width: 1200px) {
@@ -18,7 +15,7 @@
 
 .cards-similar .card {
   width: 226px;
-  height: 450px;
+  height: 400px;
 }
 
 .cards-similar .card .card-photo {

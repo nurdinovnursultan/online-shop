@@ -4,7 +4,7 @@ import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addAndDeleteProductInCart, addAndDeleteProductInFavorites } from '../../utils';
+import { addAndDeleteProductInCart, addAndDeleteProductInFavorites, productNewPrice } from '../../utils';
 import { getCart, getFavorites } from '../../redux/productsActions';
 
 const ProductDetails = ({ product }) => {
@@ -28,6 +28,9 @@ const ProductDetails = ({ product }) => {
     }
 
     const [btn, setBtn] = useState(0)
+
+    const newPrice = productNewPrice(product)
+
     return (
         <div className="product-details">
             <div className="product-details-pictures">
@@ -51,7 +54,13 @@ const ProductDetails = ({ product }) => {
                         ))}</p>
                     ) : null
                 }
-                <h2>{product.newPrice} &#8381;<span>{product.oldPrice} &#8381;</span></h2>
+                {
+                    product.sale ? (
+                        <h2>{newPrice} &#8381;<span>{product.price} &#8381;</span></h2>
+                    ) : (
+                        <h2>{product.price} &#8381;</h2>
+                    )
+                }
                 <div className="product-description">
                     <p>О товаре:</p>
                     <span>{product.description}</span>
@@ -70,7 +79,7 @@ const ProductDetails = ({ product }) => {
                     {
                         checkInCart ? <button onClick={() => goToCart()}>Перейти в корзину</button> : (
                             <button onClick={() => {
-                                addAndDeleteProductInCart(product, btn)
+                                addAndDeleteProductInCart(product, newPrice, btn)
                                 dispatch(getCart())
                             }}>
                                 <ShoppingBagOutlinedIcon /> Добавить в корзину

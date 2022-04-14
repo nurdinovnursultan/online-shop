@@ -2,19 +2,19 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import CollectionProducts from '../components/CollectionProducts/CollectionProducts';
-import { getCollectionProducts } from '../redux/collectionsActions';
+import { getCollection } from '../redux/collectionsActions';
 
 const CollectionProductsPage = () => {
     const dispatch = useDispatch()
     const collection = useSelector(state => {
         const { collectionsReducer } = state
-        return collectionsReducer.collectionProducts
+        return collectionsReducer.collection
     })
 
     const { id } = useParams()
 
     useEffect(() => {
-        dispatch(getCollectionProducts(id))
+        dispatch(getCollection(id))
     }, [])
     return (
         <div>

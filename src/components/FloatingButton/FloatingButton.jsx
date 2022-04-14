@@ -37,7 +37,7 @@ const FloatingButton = ({ links }) => {
     }, [])
 
     const scrollHandler = (e) => {
-        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 260) {
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 200) {
             setChangeColor(true)
         } else {
             setChangeColor(false)

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { productsAPI } from "./api";
-import { GET_CART, GET_FAVORITES, GET_PRODUCTS, GET_PRODUCT_DETAILS, SEARCH_PRODUCTS } from "./types";
+import { GET_BESTSELLERS, GET_CART, GET_FAVORITES, GET_LATEST, GET_PRODUCTS, GET_PRODUCT_DETAILS, SEARCH_PRODUCTS } from "./types";
 
 export function getProducts() {
     return async (dispatch) => {
@@ -17,6 +17,26 @@ export function getProductDetails(id) {
         const { data } = await axios(`${productsAPI}/${id}`)
         dispatch({
             type: GET_PRODUCT_DETAILS,
+            payload: data
+        })
+    }
+}
+
+export function getBestsellers(limit) {
+    return async (dispatch) => {
+        const { data } = await axios(`${productsAPI}?bestseller=true&page=1&limit=${limit}`)
+        dispatch({
+            type: GET_BESTSELLERS,
+            payload: data
+        })
+    }
+}
+
+export function getLatest(limit) {
+    return async (dispatch) => {
+        const { data } = await axios(`${productsAPI}?latest=true&page=1&limit=${limit}`)
+        dispatch({
+            type: GET_LATEST,
             payload: data
         })
     }

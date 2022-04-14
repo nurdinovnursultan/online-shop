@@ -1,7 +1,6 @@
 .cards-similar {
     display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
+    margin: 10px 3px;
 
     @media (max-width: 1200px) {
         flex-wrap: nowrap;
@@ -10,7 +9,7 @@
 
     .card {
         width: 226px;
-        height: 450px;
+        height: 400px;
 
         .card-photo {
             width: 226px;

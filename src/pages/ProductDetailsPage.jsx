@@ -4,17 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetails } from '../redux/productsActions';
 import { useParams } from 'react-router-dom';
 import SimilarProducts from '../components/SimilarProducts/SimilarProducts';
+import { getCollectionProducts } from '../redux/collectionsActions';
 
 const ProductDetailsPage = () => {
     const dispatch = useDispatch()
-    const products = useSelector(state => {
-        const { productsReducer } = state
-        return productsReducer.products
-    })
-
     const productDetails = useSelector(state => {
         const { productsReducer } = state
         return productsReducer.productDetails
+    })
+
+    const similarProducts = useSelector(state => {
+        const { collectionsReducer } = state
+        return collectionsReducer.collectionProducts
     })
 
     const { id } = useParams()
@@ -23,8 +24,9 @@ const ProductDetailsPage = () => {
         dispatch(getProductDetails(id))
     }, [])
 
-    const similar = products.filter(item => item.collection === productDetails.collection)
-    const similarProducts = similar.slice(0, 5)
+    useEffect(() => {
+        dispatch(getCollectionProducts(productDetails.collection, 1, 5))
+    }, [productDetails])
 
     return (
         <div>

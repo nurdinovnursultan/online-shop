@@ -4,37 +4,40 @@ import Advantages from '../components/Advantages/Advantages';
 import Card from '../components/Card/Card';
 import CollectionCard from '../components/CollectionCard/CollectionCard';
 import { getCollections } from '../redux/collectionsActions';
-import { getProducts } from '../redux/productsActions';
+import { getBestsellers, getLatest } from '../redux/productsActions';
 
 const MainPage = () => {
     const dispatch = useDispatch()
-    const products = useSelector(state => {
+    const [bestsellersLimit, setBestsellersLimit] = useState(8)
+    const bestsellers = useSelector(state => {
         const { productsReducer } = state
-        return productsReducer.products
+        return productsReducer.bestsellers
     })
 
+    const [latestLimit, setLatestLimit] = useState(4)
+    const latest = useSelector(state => {
+        const { productsReducer } = state
+        return productsReducer.latest
+    })
+
+    const [collectionsLimit, setCollectionsLimit] = useState(4)
     const collections = useSelector(state => {
         const { collectionsReducer } = state
         return collectionsReducer.collections
     })
 
     useEffect(() => {
-        dispatch(getProducts())
-        dispatch(getCollections())
-    }, [])
+        dispatch(getBestsellers(bestsellersLimit))
+    }, [bestsellersLimit])
 
-    const bestsellers = products.filter(product => product.bestseller === true)
-    const newBestsellers = bestsellers.slice(0, 8)
+    useEffect(() => {
+        dispatch(getLatest(latestLimit))
+    }, [latestLimit])
 
-    const latest = products.filter(product => product.latest === true)
-    const newLatest = latest.slice(0, 4)
+    useEffect(() => {
+        dispatch(getCollections(1, collectionsLimit))
+    }, [collectionsLimit])
 
-    const [collectionsLimit, setCollectionsLimit] = useState(4)
-    const collectionsArray = collections.slice(0, collectionsLimit)
-
-    const setLimit = () => {
-        setCollectionsLimit(prevState => prevState + prevState)
-    }
     return (
         <div>
             <div className="cards-block">
@@ -42,35 +45,35 @@ const MainPage = () => {
                     <h1 className="headers-main">Хит продаж</h1>
                     <div className="cards">
                         {
-                            newBestsellers.map(item => (
+                            bestsellers.map(item => (
                                 <Card product={item} key={item.id} />
                             ))
                         }
                     </div>
                     <div className="btn-more">
-                        <button className="btn">Ещё</button>
+                        <button className="btn" onClick={() => setBestsellersLimit(prevState => prevState + prevState)}>Ещё</button>
                     </div>
                     <h1 className="headers-main">Новинки</h1>
                     <div className="cards">
                         {
-                            newLatest.map(item => (
+                            latest.map(item => (
                                 <Card product={item} key={item.id} />
                             ))
                         }
                     </div>
                     <div className="btn-more">
-                        <button className="btn">Ещё</button>
+                        <button className="btn" onClick={() => setLatestLimit(prevState => prevState + prevState)}>Ещё</button>
                     </div>
                     <h1 className="headers-main">Коллекция</h1>
                     <div className="cards">
                         {
-                            collectionsArray.map(item => (
+                            collections.map(item => (
                                 <CollectionCard collection={item} key={item.id} />
                             ))
                         }
                     </div>
                     <div className="btn-more">
-                        <button className="btn" onClick={() => setLimit()}>Ещё</button>
+                        <button className="btn" onClick={() => setCollectionsLimit(prevState => prevState + prevState)}>Ещё</button>
                     </div>
                     <h1 className="headers-main">Наши преимущества</h1>
                     <Advantages />

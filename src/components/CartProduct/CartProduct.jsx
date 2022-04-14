@@ -31,7 +31,13 @@ const CartProduct = ({ product }) => {
                 <p>Размер: {product.product.size}</p>
                 <p>Цвет: <button style={{ background: product.product.color[product.currentColor] }}>
                 </button></p>
-                <h2>{product.product.newPrice} &#8381; <span>{product.product.oldPrice} &#8381;</span></h2>
+                {
+                    product.newPrice ? (
+                        <h2>{product.newPrice} &#8381; <span>{product.product.price} &#8381;</span></h2>
+                    ) : (
+                        <h2>{product.product.price} &#8381;</h2>
+                    )
+                }
                 <div className="product-count">
                     <button onClick={() => {
                         if (count < 1) {

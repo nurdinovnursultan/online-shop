@@ -1,11 +1,10 @@
 import { IconButton } from '@mui/material';
 import React from 'react';
-import photo from '../../images/photo.png';
 import sale from '../../images/sale.png';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link } from 'react-router-dom';
-import { addAndDeleteProductInFavorites } from '../../utils';
+import { addAndDeleteProductInFavorites, productNewPrice } from '../../utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFavorites } from '../../redux/productsActions';
 
@@ -17,6 +16,7 @@ const Card = ({ product }) => {
     })
 
     let checkInFavorites = favorites.some(item => item.product.id === product.id);
+    const newPrice = productNewPrice(product)
 
     return (
         <div className="card">
@@ -39,12 +39,18 @@ const Card = ({ product }) => {
                         checkInFavorites ? <FavoriteIcon color="error" /> : <FavoriteBorderIcon />
                     }
                 </IconButton>
-                <img src={photo} alt="" />
+                <img src={product.images[0]} alt="" />
             </div>
             <Link to={`/details/${product.id}`}>
                 <div className="card-info">
-                    <h3>{product.title}{product.id}</h3>
-                    <h2>{product.newPrice} &#8381; <span>{product.oldPrice} &#8381;</span></h2>
+                    <h3>{product.title}</h3>
+                    {
+                        product.sale ? (
+                            <h2>{newPrice} &#8381; <span>{product.price} &#8381;</span></h2>
+                        ) : (
+                            <h2>{product.price} &#8381;</h2>
+                        )
+                    }
                     <p>Размер: {product.size}</p>
                     <div className="color-buttons">
                         {

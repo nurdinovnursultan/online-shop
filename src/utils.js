@@ -1,9 +1,15 @@
 import axios from "axios"
 
-export const addAndDeleteProductInCart = (product, color) => {
+export const productNewPrice = (product) => {
+    const newPrice = Math.ceil(product.price - (product.price / 100 * product.sale))
+    return newPrice
+}
+
+export const addAndDeleteProductInCart = (product, newPrice, color) => {
     let cart = JSON.parse(localStorage.getItem('cart'))
     let newProduct = {
         product: product,
+        newPrice: newPrice,
         currentColor: color,
         count: 1,
         pricePerCount: 0
@@ -19,7 +25,11 @@ export const addAndDeleteProductInCart = (product, color) => {
 }
 
 export const sumPricePerCount = (productInCart) => {
-    return productInCart.count * productInCart.product.newPrice
+    if (productInCart.newPrice) {
+        return productInCart.count * productInCart.newPrice
+    } else {
+        return productInCart.count * productInCart.product.price
+    }
 }
 
 export const sumTotalPrice = (products) => {
@@ -36,7 +46,7 @@ export const sumTotalCount = (products) => {
 
 export const sumOldPrice = (products) => {
     let oldPrice = 0
-    products.forEach(item => oldPrice += item.product.oldPrice)
+    products.forEach(item => oldPrice += item.product.price)
     return oldPrice
 }
 

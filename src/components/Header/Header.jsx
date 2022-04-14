@@ -24,6 +24,7 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
 
     const [openMenu, setOpenMenu] = useState(false)
     const [openSearch, setOpenSearch] = useState(false)
+    const [openSearchResults, setOpenSearchResults] = useState(false)
 
     return (
         <>
@@ -55,12 +56,20 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                         </div>
                         <div className="navbar-search">
                             <input placeholder="Поиск"
-                                onChange={(e) => handleChange(e.target.value)} />
+                                value={searchValue}
+                                onChange={(e) => {
+                                    handleChange(e.target.value)
+                                    if (searchValue !== '') {
+                                        setOpenSearchResults(true)
+                                    }
+                                    handleChange(e.target.value)
+                                }}
+                                onBlur={() => setTimeout(() => setOpenSearchResults(false), 1000)} />
                             <IconButton onClick={() => navigate("/search")}>
                                 <SearchIcon />
                             </IconButton>
                             {
-                                searchValue ? (
+                                openSearchResults ? (
                                     <div className="navbar-search-results">
                                         {
                                             searchProducts ? searchProducts.map(item => (

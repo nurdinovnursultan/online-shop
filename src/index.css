@@ -115,6 +115,12 @@ button {
   font-weight: 500;
 }
 
+.search-error {
+  padding-top: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
 @media (max-width: 768px) {
   .cards {
     flex-direction: row;

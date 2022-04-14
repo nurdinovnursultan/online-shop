@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const Pagination = ({ posts, postsPerPage, setCurrentPage }) => {
-    const [postsArray, setPostsArray] = useState([])
-
-    useEffect(() => {
-        setPostsArray(posts)
-    }, [posts])
-
     const pages = []
-    for (let i = 1; i <= Math.ceil(postsArray.length / postsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(posts / postsPerPage); i++) {
         pages.push(i)
     }
 
