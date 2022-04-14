@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
 @import url('./components/AboutUs/AboutUs.css');
 @import url('./components/Advantages/Advantages.css');
+@import url('./components/Breadcrumbs/Breadcrumbs.css');
 @import url('./components/Card/Card.css');
 @import url('./components/Cart/Cart.css');
 @import url('./components/CartModal/CartModal.css');
@@ -55,6 +56,11 @@ button {
   flex-wrap: wrap;
   width: 100%;
   margin: 0 auto;
+}
+
+.cards-mobile {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .headers {
@@ -126,6 +132,10 @@ button {
     flex-direction: row;
     flex-wrap: nowrap;
     overflow-y: hidden;
+  }
+
+  .cards-mobile {
+    flex-direction: column;
   }
 
   .help {

@@ -6,6 +6,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addAndDeleteProductInCart, addAndDeleteProductInFavorites, productNewPrice } from '../../utils';
 import { getCart, getFavorites } from '../../redux/productsActions';
+import { createTheme, IconButton, ThemeProvider } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#fff"
+        }
+    }
+})
 
 const ProductDetails = ({ product }) => {
     const dispatch = useDispatch()
@@ -31,12 +41,18 @@ const ProductDetails = ({ product }) => {
 
     const newPrice = productNewPrice(product)
 
+    const [zoom, setZoom] = useState(false)
+    const [img, setImg] = useState(0)
+
     return (
         <div className="product-details">
             <div className="product-details-pictures">
                 {
                     product.images ? product.images.map((item, index) => (
-                        <div key={index}>
+                        <div key={index} onClick={() => {
+                            setImg(index)
+                            setZoom(true)
+                        }}>
                             <img src={item} alt="" />
                         </div>
                     )) : null
@@ -96,6 +112,20 @@ const ProductDetails = ({ product }) => {
                     </button>
                 </div>
             </div>
+            {
+                zoom ? (
+                    <div className="zoom-modal">
+                        <ThemeProvider theme={theme}>
+                            <IconButton onClick={() => setZoom(false)}>
+                                <CloseIcon fontSize="large" color="primary" />
+                            </IconButton>
+                        </ThemeProvider>
+                        <div className="zoom-modal-container">
+                            <img src={product.images[img]} alt="" />
+                        </div>
+                    </div>
+                ) : null
+            }
         </div>
     );
 };

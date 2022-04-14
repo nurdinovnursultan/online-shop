@@ -2,9 +2,9 @@ import axios from "axios";
 import { companyAPI, newsAPI } from "./api";
 import { GET_COMPANY_INFORMATION, GET_NEWS } from "./types";
 
-export function getNews() {
+export function getNews(limit) {
     return async (dispatch) => {
-        const { data } = await axios(newsAPI)
+        const { data } = await axios(`${newsAPI}?page=1&limit=${limit}`)
         dispatch({
             type: GET_NEWS,
             payload: data

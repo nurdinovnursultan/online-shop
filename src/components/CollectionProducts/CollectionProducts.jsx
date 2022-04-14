@@ -9,6 +9,7 @@ import { getLatest } from '../../redux/productsActions';
 const CollectionProducts = ({ collection }) => {
     const dispatch = useDispatch()
     const [currentPage, setCurrentPage] = useState(1)
+    const [limit, setLimit] = useState(12)
     const products = useSelector(state => {
         const { collectionsReducer } = state
         return collectionsReducer.collectionProducts
@@ -20,25 +21,47 @@ const CollectionProducts = ({ collection }) => {
     })
 
     useEffect(() => {
-        dispatch(getCollectionProducts(collection.title, currentPage, 12))
-    }, [collection, currentPage])
+        dispatch(getCollectionProducts(collection.title, currentPage, limit))
+    }, [collection, currentPage, limit])
 
     useEffect(() => {
         dispatch(getLatest(5))
     }, [])
 
+    const [width, setWidth] = useState(window.innerWidth)
+    const changeWidth = () => {
+        setWidth(window.innerWidth)
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', changeWidth)
+        return function () {
+            window.removeEventListener('resize', changeWidth)
+        }
+    }, [])
+
+    const mobile = width < 769
+
+    useEffect(() => {
+        if (mobile) {
+            setLimit(4)
+        } else {
+            setLimit(12)
+        }
+    }, [mobile])
+
     return (
         <div className="cards-block">
             <div className="container">
                 <h1 className="headers">{collection.title}</h1>
-                <div className="cards">
+                <div className="cards-mobile">
                     {
                         products.map(product => (
                             <Card product={product} key={product.id} />
                         ))
                     }
                 </div>
-                <Pagination posts={collection.count} postsPerPage={12} setCurrentPage={setCurrentPage} />
+                <Pagination posts={collection.count} postsPerPage={limit} setCurrentPage={setCurrentPage} />
                 <h1 className="headers">Новинки</h1>
                 <div className="cards">
                     <SimilarProducts products={latest} />

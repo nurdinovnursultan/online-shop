@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Advantages from '../components/Advantages/Advantages';
 import Card from '../components/Card/Card';
 import CollectionCard from '../components/CollectionCard/CollectionCard';
+import Slider from '../components/Slider/Slider';
 import { getCollections } from '../redux/collectionsActions';
 import { getBestsellers, getLatest } from '../redux/productsActions';
 
@@ -42,6 +43,7 @@ const MainPage = () => {
         <div>
             <div className="cards-block">
                 <div className="container">
+                    <Slider />
                     <h1 className="headers-main">Хит продаж</h1>
                     <div className="cards">
                         {

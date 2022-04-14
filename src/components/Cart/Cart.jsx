@@ -8,8 +8,7 @@ const Cart = ({ products }) => {
     const [orderInfo, setorderInfo] = useState(false)
     const totalPrice = sumTotalPrice(products)
     const totalCount = sumTotalCount(products)
-    const oldPrice = sumOldPrice(products)
-    const oldTotalPrice = oldPrice * totalCount
+    const oldTotalPrice = sumOldPrice(products)
     const sale = oldTotalPrice - totalPrice
     return (
         <div className="cart">

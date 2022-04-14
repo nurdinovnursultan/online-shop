@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Badge, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useSelector } from 'react-redux';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 const Header = ({ description, cart, favorites, handleChange, searchValue }) => {
     const location = useLocation()
@@ -48,6 +49,8 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                             <a href={`tel:+${description.phone1}`}>{description.phone1}</a>
                         </div>
                     </div>
+                </div>
+                <div className="container">
                     <div className="navbar-down">
                         <div className="navbar-logo">
                             <Link to="/">
@@ -93,6 +96,9 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                             <Link to="/cart">Корзина</Link>
                         </div>
                     </div>
+                    {
+                        location.pathname === '/' ? null : <Breadcrumbs />
+                    }
                 </div>
             </div>
             <div className="navbar-mobile">

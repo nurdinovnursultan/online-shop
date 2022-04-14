@@ -10,12 +10,12 @@ const NewsPage = () => {
         return newsReducer.news
     })
 
-    useEffect(() => {
-        dispatch(getNews())
-    }, [])
-
     const [newsPerPage, setNewsPerPage] = useState(8)
     const [fetch, setFetch] = useState(false)
+
+    useEffect(() => {
+        dispatch(getNews(newsPerPage))
+    }, [fetch])
 
     if (fetch && newsPerPage <= news.length) {
         setNewsPerPage(prevState => prevState + prevState)

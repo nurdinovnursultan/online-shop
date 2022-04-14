@@ -12,9 +12,11 @@ export const addAndDeleteProductInCart = (product, newPrice, color) => {
         newPrice: newPrice,
         currentColor: color,
         count: 1,
-        pricePerCount: 0
+        pricePerCount: 0,
+        oldPricePerCount: 0
     }
     newProduct.pricePerCount = sumPricePerCount(newProduct)
+    newProduct.oldPricePerCount = sumOldPricePerCount(newProduct)
     let newCart = cart.products.filter(item => item.product.id === product.id)
     if (newCart.length) {
         cart.products = cart.products.filter(item => item.product.id !== product.id)
@@ -32,6 +34,10 @@ export const sumPricePerCount = (productInCart) => {
     }
 }
 
+export const sumOldPricePerCount = (productInCart) => {
+    return productInCart.count * productInCart.product.price
+}
+
 export const sumTotalPrice = (products) => {
     let totalPrice = 0
     products.forEach(item => totalPrice += item.pricePerCount)
@@ -46,7 +52,7 @@ export const sumTotalCount = (products) => {
 
 export const sumOldPrice = (products) => {
     let oldPrice = 0
-    products.forEach(item => oldPrice += item.product.price)
+    products.forEach(item => oldPrice += item.oldPricePerCount)
     return oldPrice
 }
 
@@ -59,6 +65,7 @@ export const changeCountProduct = (count, id) => {
         if (item.product.id === id) {
             item.count = count
             item.pricePerCount = sumPricePerCount(item)
+            item.oldPricePerCount = sumOldPricePerCount(item)
         }
         return item
     })

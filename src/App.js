@@ -74,7 +74,6 @@ function App() {
             <Route path="news" element={<NewsPage />} />
             <Route path="offer" element={<PublicOfferPage offer={item.offer} />} />
             <Route path="search" element={<SearchPage searchValue={searchValue} />} />
-            <Route path="slider" element={<Slider />} />
           </Routes>
           <Footer description={item.info} />
         </BrowserRouter>
