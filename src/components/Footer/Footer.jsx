@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CallIcon from '@mui/icons-material/Call';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFooterInformation } from '../../redux/companyActions';
 
-const Footer = ({ description }) => {
+const Footer = () => {
+    const dispatch = useDispatch()
+    const description = useSelector(state => {
+        const { companyReducer } = state
+        return companyReducer.footer
+    })
+
+    useEffect(() => {
+        dispatch(getFooterInformation())
+    }, [])
+
     return (
         <div className="footer">
             <div className="container">
                 <div className="footer-up">
                     <div className="footer-logo">
-                        <img src={description.logo2} alt="logo" />
+                        <img src={description.logo} alt="logo" />
                     </div>
                     <div className="footer-company">
                         <h4>Компания</h4>
@@ -33,15 +45,15 @@ const Footer = ({ description }) => {
                         <h4>Контакты</h4>
                         <div>
                             <CallIcon />
-                            <a href={`tel:+{description.phone2}`}>{description.phone2}</a>
+                            <a href={`tel:+${description.phone}`}>+{description.phone}</a>
                         </div>
                         <div>
                             <CallIcon />
-                            <a href={`tel:+{description.phone2}`}>{description.phone2}</a>
+                            <a href={`tel:+${description.phone}`}>+{description.phone}</a>
                         </div>
                         <div>
                             <MailOutlineIcon />
-                            <a href={`mailto:{description.mail}`}>{description.mail}</a>
+                            <a href={`mailto:${description.mail}`}>{description.mail}</a>
                         </div>
                     </div>
                     <div className="footer-social">

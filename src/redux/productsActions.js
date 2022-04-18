@@ -76,10 +76,9 @@ export function getFavorites() {
 
 export function searchProducts(searchValue) {
     return async (dispatch) => {
-        const { data } = await axios(`${productsAPI}?title=${searchValue}`)
         dispatch({
             type: SEARCH_PRODUCTS,
-            payload: data
+            payload: searchValue
         })
     }
 }

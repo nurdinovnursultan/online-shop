@@ -4,8 +4,13 @@ import Cart from '../components/Cart/Cart';
 import SimilarProducts from '../components/SimilarProducts/SimilarProducts';
 import { getBestsellers } from '../redux/productsActions';
 
-const CartPage = ({ cart }) => {
+const CartPage = () => {
     const dispatch = useDispatch()
+    const cart = useSelector(state => {
+        const { productsReducer } = state
+        return productsReducer.cart
+    })
+
     const bestsellers = useSelector(state => {
         const { productsReducer } = state
         return productsReducer.bestsellers
@@ -14,6 +19,7 @@ const CartPage = ({ cart }) => {
     useEffect(() => {
         dispatch(getBestsellers(5))
     }, [])
+
     return (
         <div>
             <div className="cards-block">

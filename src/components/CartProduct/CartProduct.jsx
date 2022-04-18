@@ -4,15 +4,16 @@ import { useDispatch } from 'react-redux';
 import { addAndDeleteProductInCart, changeCountProduct } from '../../utils';
 import { getCart } from '../../redux/productsActions';
 import CloseIcon from '@mui/icons-material/Close';
-import photo from '../../images/photo4.png';
 
 const CartProduct = ({ product }) => {
     const dispatch = useDispatch()
     const [count, setCount] = useState(1)
+
     useEffect(() => {
         changeCountProduct(count, product.product.id)
         dispatch(getCart())
     }, [count])
+
     return (
         <div className="cart-product">
             <div className="cart-product-remove">
@@ -24,7 +25,7 @@ const CartProduct = ({ product }) => {
                 </IconButton>
             </div>
             <div className="cart-product-picture">
-                <img src={photo} alt="" />
+                <img src={product.product.images[0]} alt="" />
             </div>
             <div className="cart-product-details">
                 <h1>{product.product.title}</h1>

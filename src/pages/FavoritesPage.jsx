@@ -4,8 +4,13 @@ import Card from '../components/Card/Card';
 import SimilarProducts from '../components/SimilarProducts/SimilarProducts';
 import { getLatest } from '../redux/productsActions';
 
-const FavoritesPage = ({ favorites }) => {
+const FavoritesPage = () => {
     const dispatch = useDispatch()
+    const favorites = useSelector(state => {
+        const { productsReducer } = state
+        return productsReducer.favorites
+    })
+
     const latest = useSelector(state => {
         const { productsReducer } = state
         return productsReducer.latest
@@ -14,6 +19,7 @@ const FavoritesPage = ({ favorites }) => {
     useEffect(() => {
         dispatch(getLatest(5))
     }, [])
+
     return (
         <div>
             <div className="cards-block">

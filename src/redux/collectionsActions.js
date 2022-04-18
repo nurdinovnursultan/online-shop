@@ -1,12 +1,22 @@
 import axios from "axios"
-import { collectionsAPI, productsAPI } from "./api"
-import { GET_COLLECTION, GET_COLLECTIONS, GET_COLLECTION_PRODUCTS } from "./types"
+import { collectionsAPI, collectionsCountAPI, productsAPI } from "./api"
+import { GET_COLLECTION, GET_COLLECTIONS, GET_COLLECTIONS_COUNT, GET_COLLECTION_PRODUCTS } from "./types"
 
 export function getCollections(page, limit) {
     return async (dispatch) => {
-        const { data } = await axios(`${collectionsAPI}?page=${page}&limit=${limit}`)
+        const { data } = await axios(`${collectionsAPI}?_page=${page}&_limit=${limit}`)
         dispatch({
             type: GET_COLLECTIONS,
+            payload: data
+        })
+    }
+}
+
+export function getCollectionsCount() {
+    return async (dispatch) => {
+        const { data } = await axios(collectionsCountAPI)
+        dispatch({
+            type: GET_COLLECTIONS_COUNT,
             payload: data
         })
     }

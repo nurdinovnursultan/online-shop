@@ -6,7 +6,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 const Help = ({ help }) => {
     const [helpOpen, setHelpOpen] = useState(false)
     return (
-        <div className="help-item-title">
+        <div className="help-item-title" onClick={() => setHelpOpen(!helpOpen)}>
             <h2>{help.title}</h2>
             <IconButton onClick={() => setHelpOpen(!helpOpen)}>
                 {helpOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}

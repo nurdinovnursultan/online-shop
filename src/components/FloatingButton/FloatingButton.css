@@ -1,7 +1,7 @@
 .floating-block {
   position: fixed;
   bottom: 5%;
-  right: 5%;
+  right: calc((100vw - 1250px) / 2);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11,6 +11,7 @@
 @media (max-width: 1024px) {
   .floating-block {
     bottom: 15%;
+    right: 0;
   }
 }
 

@@ -7,7 +7,7 @@ const initialState = {
     latest: [],
     cart: [],
     favorites: [],
-    searchProducts: []
+    searchProducts: ""
 }
 
 export const productsReducer = (state = initialState, action) => {

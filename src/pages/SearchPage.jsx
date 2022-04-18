@@ -4,13 +4,32 @@ import Pagination from '../components/Pagination/Pagination';
 import SimilarProducts from '../components/SimilarProducts/SimilarProducts';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBestsellers } from '../redux/productsActions';
+import axios from 'axios';
+import { productsAPI } from '../redux/api';
 
-const SearchPage = ({ searchValue }) => {
+const SearchPage = () => {
     const dispatch = useDispatch()
-    const searchProducts = useSelector(state => {
+    const search = useSelector(state => {
         const { productsReducer } = state
         return productsReducer.searchProducts
     })
+
+    const [searchResult, setSearchResult] = useState([])
+
+    const searchFunction = async () => {
+        const { data } = await axios(`${productsAPI}?title=${search}`)
+        setSearchResult(data)
+    }
+
+    useEffect(() => {
+        searchFunction()
+    }, [search])
+
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(12)
+    const indexOfLastPost = page * limit
+    const indexOfFirstPost = indexOfLastPost - limit
+    const products = searchResult.slice(indexOfFirstPost, indexOfLastPost)
 
     const bestsellers = useSelector(state => {
         const { productsReducer } = state
@@ -21,13 +40,8 @@ const SearchPage = ({ searchValue }) => {
         dispatch(getBestsellers(5))
     }, [])
 
-    const [currentPage, setCurrentPage] = useState(1)
-    const [limit, setLimit] = useState(12)
-    const indexOfLastPost = currentPage * limit
-    const indexOfFirstPost = indexOfLastPost - limit
-    const products = searchProducts.slice(indexOfFirstPost, indexOfLastPost)
-
     const [width, setWidth] = useState(window.innerWidth)
+
     const changeWidth = () => {
         setWidth(window.innerWidth)
     }
@@ -52,16 +66,16 @@ const SearchPage = ({ searchValue }) => {
     return (
         <div className="cards-block">
             <div className="container">
-                <h1 className="headers">Результаты поиска по запросу: {searchValue}</h1>
+                <h1 className="headers">Результаты поиска по запросу: {search}</h1>
                 {
-                    searchValue && searchProducts.length ?
+                    search && searchResult.length ?
                         <div className="cards-mobile">
                             {
                                 products.map(item => (
                                     <Card product={item} key={item.id} />
                                 ))
                             }
-                            <Pagination posts={searchProducts.length} postsPerPage={limit} setCurrentPage={setCurrentPage} />
+                            <Pagination posts={searchResult.length} postsPerPage={limit} setCurrentPage={setPage} />
                         </div>
                         :
                         <div>

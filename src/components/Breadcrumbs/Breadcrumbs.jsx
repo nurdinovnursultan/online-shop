@@ -46,7 +46,7 @@ const Breadcrumbs = () => {
                 <Link to="/">Главная</Link>
                 {
                     breadcrumb.map(item => (
-                        <Link to={item.path}> / {item.name}</Link>
+                        <Link to={item.path}>/{item.name}</Link>
                     ))
                 }
             </div>

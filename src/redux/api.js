@@ -1,4 +1,13 @@
 export const productsAPI = "https://624b094944505084bc4afa49.mockapi.io/api/products";
-export const collectionsAPI = "https://624b094944505084bc4afa49.mockapi.io/api/collections";
-export const newsAPI = "https://624b094944505084bc4afa49.mockapi.io/api/news";
-export const companyAPI = "https://624b094944505084bc4afa49.mockapi.io/api/company";
+export const collectionsAPI = "http://localhost:8000/collections";
+export const collectionsCountAPI = "http://localhost:8000/collectionsCount";
+export const aboutAPI = "http://localhost:8000/about";
+export const advantagesAPI = "http://localhost:8000/advantages";
+export const footerAPI = "http://localhost:8000/footer";
+export const headerAPI = "http://localhost:8000/header";
+export const helpAPI = "http://localhost:8000/help";
+export const newsAPI = "http://localhost:8000/news";
+export const offersAPI = "http://localhost:8000/offer";
+export const sliderAPI = "http://localhost:8000/slider";
+export const ordersAPI = "http://localhost:8000/orders";
+export const feedbackAPI = "http://localhost:8000/feedback";

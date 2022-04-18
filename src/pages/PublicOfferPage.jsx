@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOfferPage } from '../redux/companyActions';
 
-const PublicOfferPage = ({ offer }) => {
+const PublicOfferPage = () => {
+    const dispatch = useDispatch()
+    const offer = useSelector(state => {
+        const { companyReducer } = state
+        return companyReducer.offer
+    })
+
+    useEffect(() => {
+        dispatch(getOfferPage())
+    }, [])
+
     return (
         <div className="cards-block">
             <div className="container">

@@ -6,10 +6,52 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { Badge, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+import { getHeaderInformation } from '../../redux/companyActions';
+import { getCart, getFavorites, searchProducts } from '../../redux/productsActions';
+import { productsAPI } from '../../redux/api';
+import axios from 'axios';
 
-const Header = ({ description, cart, favorites, handleChange, searchValue }) => {
+const Header = () => {
+    const dispatch = useDispatch()
+    const description = useSelector(state => {
+        const { companyReducer } = state
+        return companyReducer.header
+    })
+
+    const cart = useSelector(state => {
+        const { productsReducer } = state
+        return productsReducer.cart
+    })
+
+    const favorites = useSelector(state => {
+        const { productsReducer } = state
+        return productsReducer.favorites
+    })
+
+    const searchValue = useSelector(state => {
+        const { productsReducer } = state
+        return productsReducer.searchProducts
+    })
+
+    useEffect(() => {
+        dispatch(getHeaderInformation())
+        dispatch(getCart())
+        dispatch(getFavorites())
+    }, [])
+
+    const [searchResult, setSearchResult] = useState([])
+
+    const searchFunction = async () => {
+        const { data } = await axios(`${productsAPI}?title=${searchValue}`)
+        setSearchResult(data)
+    }
+
+    useEffect(() => {
+        searchFunction()
+    }, [searchValue]);
+
     const location = useLocation()
 
     useEffect(() => {
@@ -18,10 +60,6 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
     }, [location.pathname])
 
     const navigate = useNavigate()
-    const searchProducts = useSelector(state => {
-        const { productsReducer } = state
-        return productsReducer.searchProducts
-    })
 
     const [openMenu, setOpenMenu] = useState(false)
     const [openSearch, setOpenSearch] = useState(false)
@@ -46,7 +84,7 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                             </ul>
                         </div>
                         <div>Тел:
-                            <a href={`tel:+${description.phone1}`}>{description.phone1}</a>
+                            <a href={`tel:+${description.phone}`}>+{description.phone}</a>
                         </div>
                     </div>
                 </div>
@@ -61,11 +99,11 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                             <input placeholder="Поиск"
                                 value={searchValue}
                                 onChange={(e) => {
-                                    handleChange(e.target.value)
+                                    dispatch(searchProducts(e.target.value))
                                     if (searchValue !== '') {
                                         setOpenSearchResults(true)
                                     }
-                                    handleChange(e.target.value)
+                                    dispatch(searchProducts(e.target.value))
                                 }}
                                 onBlur={() => setTimeout(() => setOpenSearchResults(false), 1000)} />
                             <IconButton onClick={() => navigate("/search")}>
@@ -75,8 +113,8 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                                 openSearchResults ? (
                                     <div className="navbar-search-results">
                                         {
-                                            searchProducts ? searchProducts.map(item => (
-                                                <div key={item.id}>{item.title}</div>
+                                            searchResult ? searchResult.map(item => (
+                                                <div key={item.id}><Link to={`/details/${item.id}`}>{item.title}</Link></div>
                                             )) : null
                                         }
                                     </div>
@@ -132,18 +170,22 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                                         <Link to="/collection">Коллекции</Link>
                                         <div className="menu-body-icons">
                                             <div>
-                                                <FavoriteBorderOutlinedIcon />
+                                                <Badge badgeContent={favorites ? favorites.length : 0} color="error">
+                                                    <FavoriteBorderOutlinedIcon />
+                                                </Badge>
                                                 <Link to="/favorites">Избранное</Link>
                                             </div>
                                             <div>
-                                                <ShoppingBagOutlinedIcon />
+                                                <Badge badgeContent={cart ? cart.length : 0} color="error">
+                                                    <ShoppingBagOutlinedIcon />
+                                                </Badge>
                                                 <Link to="/cart">Корзина</Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="menu-footer">
                                         <p>Свяжитесь с нами:</p>
-                                        <span>Тел: {description.phone1}</span>
+                                        <a href={`tel:+${description.phone}`}>+{description.phone}</a>
                                     </div>
                                 </div>
                             </div>
@@ -152,16 +194,16 @@ const Header = ({ description, cart, favorites, handleChange, searchValue }) => 
                     {
                         openSearch ? (
                             <div className="mobile-search">
-                                <input placeholder="Поиск" onChange={(e) => handleChange(e.target.value)} />
-                                <IconButton>
+                                <input placeholder="Поиск" onChange={(e) => dispatch(searchProducts(e.target.value))} />
+                                <IconButton onClick={() => navigate("/search")}>
                                     <SearchIcon />
                                 </IconButton>
                                 {
                                     searchValue ? (
                                         <div className="mobile-search-results">
                                             {
-                                                searchProducts ? searchProducts.map(item => (
-                                                    <div key={item.id}>{item.title}</div>
+                                                searchResult ? searchResult.map(item => (
+                                                    <div key={item.id}><Link to={`/details/${item.id}`}>{item.title}</Link></div>
                                                 )) : null
                                             }
                                         </div>

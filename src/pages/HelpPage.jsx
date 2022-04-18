@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Help from '../components/Help/Help';
+import { getHelpPage } from '../redux/companyActions';
 
-const HelpPage = ({ help }) => {
+const HelpPage = () => {
+    const dispatch = useDispatch()
+    const help = useSelector(state => {
+        const { companyReducer } = state
+        return companyReducer.help
+    })
+
+    useEffect(() => {
+        dispatch(getHelpPage())
+    }, [])
+
     return (
         <div className="cards-block">
             <div className="container">

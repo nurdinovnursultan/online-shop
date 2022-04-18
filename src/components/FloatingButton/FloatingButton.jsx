@@ -7,6 +7,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import { createTheme, IconButton, ThemeProvider } from '@mui/material';
 import Modal from '../Modal/Modal';
+import { useSelector } from 'react-redux';
 
 const theme = createTheme({
     palette: {
@@ -19,13 +20,13 @@ const theme = createTheme({
     }
 })
 
-const FloatingButton = ({ links }) => {
+const FloatingButton = () => {
+    const links = useSelector(state => {
+        const { companyReducer } = state
+        return companyReducer.footer
+    })
     const [state, setState] = useState(true)
     const [modal, setModal] = useState(false)
-
-    const goUp = () => {
-        window.scrollTo(0, 0);
-    }
 
     const [changeColor, setChangeColor] = useState(false)
 
@@ -43,6 +44,7 @@ const FloatingButton = ({ links }) => {
             setChangeColor(false)
         }
     }
+
     return (
         <>
             {
@@ -70,7 +72,7 @@ const FloatingButton = ({ links }) => {
                 }
                 <div className="floating-block-visible">
                     <ThemeProvider theme={theme}>
-                        <IconButton onClick={() => goUp()}>
+                        <IconButton onClick={() => window.scrollTo(0, 0)}>
                             <KeyboardArrowUpIcon fontSize="large" color={changeColor ? "secondary" : "primary"} />
                         </IconButton>
                         <IconButton onClick={() => setState(!state)}>

@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCollections } from '../redux/collectionsActions';
+import { getCollections, getCollectionsCount } from '../redux/collectionsActions';
 import CollectionCard from '../components/CollectionCard/CollectionCard';
 import Pagination from '../components/Pagination/Pagination';
 
 const CollectionPage = () => {
     const dispatch = useDispatch()
-    const [currentPage, setCurrentPage] = useState(1)
-    const [limit, setLimit] = useState(8)
     const collections = useSelector(state => {
         const { collectionsReducer } = state
         return collectionsReducer.collections
     })
 
+    const collectionsCount = useSelector(state => {
+        const { collectionsReducer } = state
+        return collectionsReducer.collectionsCount
+    })
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const [limit, setLimit] = useState(8)
+
     useEffect(() => {
         dispatch(getCollections(currentPage, limit))
     }, [currentPage, limit])
+
+    useEffect(() => {
+        dispatch(getCollectionsCount())
+    }, [])
 
     const [width, setWidth] = useState(window.innerWidth)
     const changeWidth = () => {
@@ -51,7 +61,7 @@ const CollectionPage = () => {
                             ))
                         }
                     </div>
-                    <Pagination posts={11} postsPerPage={limit} setCurrentPage={setCurrentPage} />
+                    <Pagination posts={collectionsCount.count} postsPerPage={limit} setCurrentPage={setCurrentPage} />
                 </div>
             </div>
         </div>

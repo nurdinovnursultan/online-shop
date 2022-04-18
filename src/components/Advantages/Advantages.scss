@@ -4,6 +4,10 @@
     flex-wrap: wrap;
     text-align: center;
 
+    @media (max-width: 600px) {
+        justify-content: space-around;
+    }
+
     .advantages-cards {
         display: flex;
         flex-direction: column;

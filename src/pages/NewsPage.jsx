@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import News from '../components/News/News';
-import { getNews } from '../redux/newsActions';
+import { getNewsPage } from '../redux/companyActions';
 
 const NewsPage = () => {
     const dispatch = useDispatch()
     const news = useSelector(state => {
-        const { newsReducer } = state
-        return newsReducer.news
+        const { companyReducer } = state
+        return companyReducer.news
     })
 
     const [newsPerPage, setNewsPerPage] = useState(8)
     const [fetch, setFetch] = useState(false)
 
     useEffect(() => {
-        dispatch(getNews(newsPerPage))
-    }, [fetch])
+        dispatch(getNewsPage())
+    }, [])
 
     if (fetch && newsPerPage <= news.length) {
         setNewsPerPage(prevState => prevState + prevState)
